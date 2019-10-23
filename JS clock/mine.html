@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>JS Clock</title>
+</head>
+
+<body onload="counterOnClock();">
+  <table>
+    <tr>
+      <td class="clock" id="dc"></td>
+      <td>
+        <table>
+
+          <tr>
+            <td class="clocklg" id="dc_hour"></td>
+          </tr>
+
+          <tr>
+            <td class="clocklg" id="dc_second"></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  <form>
+    Reminder Description: <input name="desc" type="text"><br>
+    Choose a time: <input id="hr" type="number" min="1" max="12"><input id="min" type="number" min="00" max="59"><input id="sec" type="number" min="00" max="59">
+    <select id="ampm">
+      <option value="AM">AM</option>
+      <option value="PM">PM</option>
+    </select>
+    <br>
+    <input type="button" value="Set Reminder" onclick="setReminder()">
+    <!-- use alerts -->
+
+  </form>
+
+  <script>
+    function counterOnClock() {
+      var date = new Date();
+      var hour = date.getHours();
+      var minute = date.getMinutes();
+      var seconds = date.getSeconds();
+      minute = Ticking(minute);
+      seconds = Ticking(seconds);
+
+      if (hour > 12) {
+        var finalHour = hour - 12
+      } else {
+        var finalHour = hour
+      }
+
+      if (hour > 12) {
+        zone = "PM"
+      } else {
+        zone = "AM"
+      }
+
+
+      document.getElementById('dc').innerHTML = finalHour + ":" + minute + ":" + seconds + " " + zone;
+
+
+      var time
+      time = setInterval('counterOnClock()', 1000);
+    }
+
+
+    function Ticking(ticVal) {
+      if (ticVal < 10) {
+        ticVal = "0" + ticVal;
+      }
+      return ticVal;
+    }
+
+    function setReminder() {
+        var date = new Date();
+      if (hr == date.getHours() && min == date.getMinutes() && sec == date.getseconds() && ampm == zone) {
+        window.alert(document.getElementById('dc').innerHTML = "Your alarm" + desc + "at" + hr + ":" + min + ":" + sec + " " + ampm + "is ready!");
+      }
+
+    }
+  </script>
+</body>
+
+</html>
