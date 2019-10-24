@@ -26,17 +26,19 @@
   </table>
 
   <form>
-    Reminder Description: <input name="desc" type="text"><br>
+    Reminder Description: <input id="desc" type="text"><br>
     Choose a time: <input id="hr" type="number" min="1" max="12"><input id="min" type="number" min="00" max="59"><input id="sec" type="number" min="00" max="59">
     <select id="ampm">
       <option value="AM">AM</option>
       <option value="PM">PM</option>
     </select>
     <br>
-    <input type="button" value="Set Reminder" onclick="setReminder()">
+    <input type="button" value="Set Reminder" onclick="setReminder(); setInterval('setReminder()', 1000)">
+
     <!-- use alerts -->
 
   </form>
+
 
   <script>
     function counterOnClock() {
@@ -44,6 +46,7 @@
       var hour = date.getHours();
       var minute = date.getMinutes();
       var seconds = date.getSeconds();
+      hour = Ticking(hour);
       minute = Ticking(minute);
       seconds = Ticking(seconds);
 
@@ -60,7 +63,7 @@
       }
 
 
-      document.getElementById('dc').innerHTML = finalHour + ":" + minute + ":" + seconds + " " + zone;
+      document.getElementById("dc").innerHTML = finalHour + ":" + minute + ":" + seconds + " " + zone;
 
 
       var time
@@ -75,10 +78,24 @@
       return ticVal;
     }
 
+
     function setReminder() {
-        var date = new Date();
-      if (hr == date.getHours() && min == date.getMinutes() && sec == date.getseconds() && ampm == zone) {
-        window.alert(document.getElementById('dc').innerHTML = "Your alarm" + desc + "at" + hr + ":" + min + ":" + sec + " " + ampm + "is ready!");
+
+      // alert("ooga booga")
+      var date = new Date();
+      var hour = date.getHours();
+      var minute = date.getMinutes();
+      var seconds = date.getSeconds();
+
+      if (document.getElementById(hr) == hour) {
+        if (document.getElementById(min) == minute) {
+          if (document.getElementById(sec) == seconds) {
+            if (document.getElementById(ampm) == zone) {
+
+              alert("Your alarm" + desc + "at" + hr + ":" + min + ":" + sec + " " + ampm + "is ready!");
+            }
+          }
+        }
       }
 
     }
