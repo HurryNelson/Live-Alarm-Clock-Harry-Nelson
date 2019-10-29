@@ -33,7 +33,7 @@
       <option value="PM">PM</option>
     </select>
     <br>
-    <input type="button" value="Set Reminder" onclick="setReminder(); setInterval('setReminder()', 1000)">
+    <input type="button" value="Set Reminder" onclick="setReminder(); setInterval('setReminderTo()', 1000)">
 
     <!-- use alerts -->
 
@@ -86,7 +86,8 @@
       var hour = date.getHours();
       var minute = date.getMinutes();
       var seconds = date.getSeconds();
-
+    }
+  function setReminderTo() {
       if (document.getElementById(hr) == hour) {
         if (document.getElementById(min) == minute) {
           if (document.getElementById(sec) == seconds) {
